@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 public class DataSourceConfiguration {
     @Bean
     public DataSource embeddedDataSource() {
-        return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.HSQL).addScript("classpath:courses_database.sql").build();
+        return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.HSQL).addScripts("classpath:courses_database.sql", "classpath:test_data.sql").build();
     }
 
     //default username : sa, password : ''
