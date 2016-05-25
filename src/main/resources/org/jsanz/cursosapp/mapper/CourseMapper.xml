@@ -1,15 +1,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.jsanz.cursosapp.mapper.CourseMapper">
     <resultMap id="getCourses_result" type="org.jsanz.cursosapp.domain.Course">
+        <result property="id" column="course_id" />
         <result property="name" column="course_name" />
+        <result property="active" column="active" />
         <result property="level" column="course_level" />
         <result property="duration" column="duration" />
+        <result property="speaker.id" column="teacher_id" />
         <result property="speaker.name" column="teacher_name" />
     </resultMap>
 
     <select id="selectAllCourses" resultMap="getCourses_result">
         SELECT
+            c.id as course_id,
             c.name as course_name,
+            c.active,
+            t.id as teacher_id,
             t.name as teacher_name,
             c.course_level,
             c.duration
@@ -21,6 +27,8 @@
             c.course_speaker_id = t.id
         WHERE
             c.active = TRUE
+        ORDER BY
+            c.name
     </select>
 
     <insert id="insertCourse" parameterType="Course">

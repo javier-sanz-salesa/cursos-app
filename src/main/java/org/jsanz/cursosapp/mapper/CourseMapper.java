@@ -15,12 +15,12 @@ public interface CourseMapper {
      * @param course A new course object.
      * @return The number of rows affected.
      */
-    public int insertCourse(Course course);
+    int insertCourse(Course course);
 
     /**
      * This method retrieves all available active courses including the speaker name.
      *
      * @return A list of {@link Course} objects.
      */
-    public List<Course> selectAllCourses();
+    List<Course> selectAllCourses();
 }
