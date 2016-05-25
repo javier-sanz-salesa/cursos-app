@@ -1,5 +1,6 @@
 package org.jsanz.cursosapp.service;
 
+import org.jsanz.cursosapp.controller.error.GenericApplicationException;
 import org.jsanz.cursosapp.domain.Course;
 import org.jsanz.cursosapp.mapper.CourseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,12 @@ public class CoursesServiceImpl implements CoursesService {
      * @return A list of the active courses.
      */
     @Override
-    public List<Course> getAllActiveCourses() {
-        return courseMapper.selectAllCourses();
+    public List<Course> getAllActiveCourses() throws GenericApplicationException {
+        try {
+            return courseMapper.selectAllCourses();
+        } catch (Throwable t) {
+            throw new GenericApplicationException(500, "internal_server_error");
+        }
     }
 
     /**
@@ -33,7 +38,11 @@ public class CoursesServiceImpl implements CoursesService {
      * @return <code>true</code> if the insertion is correct; <code>false</code> otherwise.
      */
     @Override
-    public boolean saveCourse(Course course) {
-        return courseMapper.insertCourse(course) == 1;
+    public boolean saveCourse(Course course) throws GenericApplicationException {
+        try {
+            return courseMapper.insertCourse(course) == 1;
+        } catch (Throwable t) {
+            throw new GenericApplicationException(500, "internal_server_error");
+        }
     }
 }

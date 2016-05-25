@@ -1,6 +1,7 @@
 package org.jsanz.cursosapp.controller;
 
 import org.glassfish.jersey.server.ResourceConfig;
+import org.jsanz.cursosapp.controller.error.CustomExceptionMapper;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -9,6 +10,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class JerseyConfig extends ResourceConfig {
     public JerseyConfig() {
-        register(CoursesController.class);
+        registerClasses(CoursesController.class, CustomExceptionMapper.class);
     }
 }

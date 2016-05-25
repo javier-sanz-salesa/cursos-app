@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 /**
@@ -25,8 +27,8 @@ public class CoursesController {
      * @return
      */
     @GET
-    @Produces("application/json")
-    public List<Course> getActiveCourses() {
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Course> getActiveCourses() throws GenericApplicationException {
         return coursesService.getAllActiveCourses();
     }
 
@@ -37,18 +39,15 @@ public class CoursesController {
      * @return The number of rows affected
      */
     @POST
-    @Consumes("application/json")
-    @Produces("application/json")
-    public void saveCourse(Course course) throws Exception {
-        try {
-            boolean ok = coursesService.saveCourse(course);
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response saveCourse(Course course) throws GenericApplicationException {
+        boolean ok = coursesService.saveCourse(course);
 
-            if (!ok) {
-                throw new GenericApplicationException("Could not add the course");
-            }
-        } catch (Throwable t) {
-            System.out.println("t = " + t);
-            throw new GenericApplicationException("internal server error", t);
+        if (ok) {
+            return Response.status(Response.Status.CREATED).entity("New course created").build();
+        } else {
+            throw new GenericApplicationException(500, "Course could not be added");
         }
     }
 }

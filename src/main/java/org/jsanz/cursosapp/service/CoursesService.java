@@ -1,5 +1,6 @@
 package org.jsanz.cursosapp.service;
 
+import org.jsanz.cursosapp.controller.error.GenericApplicationException;
 import org.jsanz.cursosapp.domain.Course;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public interface CoursesService {
      *
      * @return A list of the active courses.
      */
-    List<Course> getAllActiveCourses();
+    List<Course> getAllActiveCourses() throws GenericApplicationException;
 
     /**
      * Add a new course.
@@ -21,5 +22,5 @@ public interface CoursesService {
      * @param course The new course
      * @return <code>true</code> if the insertion is correct; <code>false</code> otherwise.
      */
-    boolean saveCourse(Course course);
+    boolean saveCourse(Course course) throws GenericApplicationException;
 }
