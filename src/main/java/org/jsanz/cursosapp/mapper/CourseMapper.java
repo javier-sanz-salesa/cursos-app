@@ -18,10 +18,9 @@ public interface CourseMapper {
     public int insertCourse(Course course);
 
     /**
-     * This method retrieves all available courses.
+     * This method retrieves all available active courses including the speaker name.
      *
      * @return A list of {@link Course} objects.
      */
-    @Select("SELECT * FROM courses")
     public List<Course> selectAllCourses();
 }

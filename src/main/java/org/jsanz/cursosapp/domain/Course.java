@@ -12,7 +12,7 @@ public class Course {
     private boolean active;
     private int duration;
     private String level;
-    private int speaker;
+    private CourseSpeaker speaker;
 
     @Override
     public boolean equals(Object o) {
@@ -63,11 +63,11 @@ public class Course {
         this.name = name;
     }
 
-    public int getSpeaker() {
+    public CourseSpeaker getSpeaker() {
         return speaker;
     }
 
-    public void setSpeaker(int speaker) {
+    public void setSpeaker(CourseSpeaker speaker) {
         this.speaker = speaker;
     }
 

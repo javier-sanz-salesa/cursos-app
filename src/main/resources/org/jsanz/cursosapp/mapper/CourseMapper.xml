@@ -1,9 +1,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.jsanz.cursosapp.mapper.CourseMapper">
-    <cache/>
+    <resultMap id="getCourses_result" type="org.jsanz.cursosapp.domain.Course">
+        <result property="name" column="course_name" />
+        <result property="level" column="course_level" />
+        <result property="duration" column="duration" />
+        <result property="speaker.name" column="teacher_name" />
+    </resultMap>
+
+    <select id="selectAllCourses" resultMap="getCourses_result">
+        SELECT
+            c.name as course_name,
+            t.name as teacher_name,
+            c.course_level,
+            c.duration
+        FROM
+            courses c
+        JOIN
+            course_speakers t
+        ON
+            c.course_speaker_id = t.id
+        WHERE
+            c.active = TRUE
+    </select>
 
     <insert id="insertCourse" parameterType="Course">
         INSERT INTO courses (id, name, active, duration, course_level, course_speaker_id)
-        VALUES (#{id}, #{name}, #{active}, #{duration}, #{level}, #{speaker});
+        VALUES (#{id}, #{name}, #{active}, #{duration}, #{level}, #{speaker.id});
     </insert>
 </mapper>
