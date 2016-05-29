@@ -2,6 +2,7 @@ package org.jsanz.cursosapp.controller;
 
 import org.jsanz.cursosapp.controller.error.GenericApplicationException;
 import org.jsanz.cursosapp.domain.Course;
+import org.jsanz.cursosapp.domain.CourseSpeaker;
 import org.jsanz.cursosapp.service.CoursesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,7 +16,7 @@ import java.util.List;
  * Courses controller. Temp.
  */
 @Component
-@Path("/courses")
+@Path("/")
 public class CoursesController {
     // The courses service
     @Autowired
@@ -27,9 +28,17 @@ public class CoursesController {
      * @return
      */
     @GET
+    @Path("/courses")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Course> getActiveCourses() throws GenericApplicationException {
         return coursesService.getAllActiveCourses();
+    }
+
+    @GET
+    @Path("/speakers")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<CourseSpeaker> getCourseSpeakers() throws GenericApplicationException {
+        return coursesService.getAllCourseSpeakers();
     }
 
     /**
@@ -39,6 +48,7 @@ public class CoursesController {
      * @return The number of rows affected
      */
     @POST
+    @Path("/courses")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response saveCourse(Course course) throws GenericApplicationException {

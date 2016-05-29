@@ -21,7 +21,7 @@ public class CoursesServiceTest {
     private CoursesService serviceUnderTest;
 
     @Test
-    public void test() {
+    public void test() throws Exception {
         List<Course> allActiveCourses = serviceUnderTest.getAllActiveCourses();
         System.out.println("allActiveCourses = " + allActiveCourses);
     }

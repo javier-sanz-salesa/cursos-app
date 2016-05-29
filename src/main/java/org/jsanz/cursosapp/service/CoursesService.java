@@ -2,6 +2,7 @@ package org.jsanz.cursosapp.service;
 
 import org.jsanz.cursosapp.controller.error.GenericApplicationException;
 import org.jsanz.cursosapp.domain.Course;
+import org.jsanz.cursosapp.domain.CourseSpeaker;
 
 import java.util.List;
 
@@ -15,6 +16,13 @@ public interface CoursesService {
      * @return A list of the active courses.
      */
     List<Course> getAllActiveCourses() throws GenericApplicationException;
+
+    /**
+     * Get all active course speakers.
+     *
+     * @return A list of course speakers.
+     */
+    List<CourseSpeaker> getAllCourseSpeakers() throws GenericApplicationException;
 
     /**
      * Add a new course.

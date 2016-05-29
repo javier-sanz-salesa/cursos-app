@@ -10,6 +10,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class JerseyConfig extends ResourceConfig {
     public JerseyConfig() {
-        registerClasses(CoursesController.class, CustomExceptionMapper.class);
+        registerClasses(CoursesController.class, CustomExceptionMapper.class, CORSFilter.class);
     }
 }
