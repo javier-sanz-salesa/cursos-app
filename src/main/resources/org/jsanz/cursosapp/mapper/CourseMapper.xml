@@ -32,7 +32,7 @@
     </select>
 
     <insert id="insertCourse" parameterType="Course">
-        INSERT INTO courses (id, name, active, duration, course_level, course_speaker_id)
-        VALUES (#{id}, #{name}, #{active}, #{duration}, #{level}, #{speaker.id});
+        INSERT INTO courses (name, active, duration, course_level, course_speaker_id)
+        VALUES (#{name}, #{active}, #{duration}, #{level}, #{speaker.id});
     </insert>
 </mapper>

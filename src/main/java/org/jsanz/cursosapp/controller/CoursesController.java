@@ -55,7 +55,7 @@ public class CoursesController {
         boolean ok = coursesService.saveCourse(course);
 
         if (ok) {
-            return Response.status(Response.Status.CREATED).entity("New course created").build();
+            return Response.status(Response.Status.CREATED).build();
         } else {
             throw new GenericApplicationException(500, "Course could not be added");
         }

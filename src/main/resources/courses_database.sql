@@ -1,6 +1,6 @@
 -- Main table containing courses data
 CREATE TABLE courses (
-    id INT PRIMARY KEY,
+    id INT IDENTITY PRIMARY KEY,
     name VARCHAR(512),
     active BOOLEAN,
     duration INTEGER,
@@ -10,6 +10,6 @@ CREATE TABLE courses (
 
 -- Course speakers table
 CREATE TABLE course_speakers (
-    id INT PRIMARY KEY,
+    id INT IDENTITY PRIMARY KEY,
     name VARCHAR(512)
 );
